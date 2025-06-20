@@ -1,0 +1,53 @@
+.main {
+  padding: 16px;
+  max-width: 100%;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.mainButtons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.buttonPrice,
+.activeButtonPrice {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.activeButtonPrice {
+  border: 2px solid rgb(131, 240, 131);
+}
+
+.uploadPrice {
+  padding: 16px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  animation: slideDown 0.4s ease;
+}
+
+@media (max-width: 600px) {
+  .mainButtons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .uploadPrice {
+    padding: 12px;
+  }
+
+  .buttonPrice,
+  .activeButtonPrice {
+    width: 100%;
+    font-size: 1rem;
+  }
+}
