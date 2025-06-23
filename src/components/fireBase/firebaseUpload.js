@@ -5,7 +5,7 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
 export const uploadStockData = async (items = []) => {
   const colRef = collection(db, "products");

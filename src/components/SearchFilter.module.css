@@ -14,7 +14,9 @@
   border: none;
   margin-bottom: 16px;
   box-sizing: border-box;
-  transition: border-color 0.2s;
+  transition: all 0.5s;
+  color: white;
+  background-color: #3f3f3f;
 }
 
 .input:focus {
@@ -41,7 +43,7 @@
 
 .name {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 .analogs,
@@ -56,14 +58,21 @@
   text-align: center;
   animation: fadeIn 0.3s ease;
 }
+.sale10 {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
 
 @media (max-width: 600px) {
   .filterItem {
     padding: 12px;
   }
 
-  .name {
+  .name,
+  .name a {
     font-size: 1rem;
+    color: white;
   }
 
   .analogs,
@@ -75,6 +84,7 @@
   .input {
     font-size: 1.5rem;
     height: 60px;
+    background-color: #444;
   }
 }
 

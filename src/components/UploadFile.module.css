@@ -1,0 +1,12 @@
+.uploadPrice {
+  padding: 16px;
+  background-color: #222;
+  color: white;
+  text-align: center;
+  animation: slideDown 0.4s ease;
+}
+@media (max-width: 600px) {
+  .uploadPrice {
+    padding: 12px;
+  }
+}

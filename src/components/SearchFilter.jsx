@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from './SearchFilter.module.css';
 
-export const SearchFilter = ({ jsonData = [],sale,setUpload,upload }) => {  // Добавлено значение по умолчанию
+export const SearchFilter = ({ jsonData = [],sale,setUpload,upload }) => { 
   const [value, setValue] = useState('');
   const [results, setResults] = useState([]);
-
+  const [getSale , setGetSale] = useState(false)
   const onChange = ({ target }) => {
     setValue(target.value);
   };
@@ -44,6 +44,16 @@ export const SearchFilter = ({ jsonData = [],sale,setUpload,upload }) => {  // �
     setResults(filteredResults);
   }, [value, jsonData]);
 
+  const price = (salePrice,getSale10 ,item) => {
+    if (sale) {
+      return Math.ceil(salePrice / 5) * 5
+    } else if (getSale){
+      return Math.ceil(getSale10 / 5) * 5
+    } else {
+      return item['Цена']
+    }
+  }
+
   return (
     <div className={styles.container}>
       <input 
@@ -62,14 +72,19 @@ export const SearchFilter = ({ jsonData = [],sale,setUpload,upload }) => {  // �
       
       {results.length > 0 ? (
         <div className={styles.results}>
+          <div className={styles.sale10}>
+              <p>Скидка 10%</p>
+              <input type="checkbox" name="sale" onChange={()=>{setGetSale(!getSale)}} />
+          </div>
           {results.map((item, index) => {
             const salePrice = item['Цена'] * 1.3
+            const getSale10 = item['Цена'] / 1.1
             return(
             <div key={`${item['Номенклатура']}-${index}`} className={styles.filterItem}>
               <p className={styles.name}>{item['Номенклатура']}</p>
               <p className={styles.analogs}>Аналоги: {item['Артикул']}</p>
               <p className={styles.stock}>Остаток: {item['Остаток']}</p>
-              <p className={styles.price}>Цена: {sale? Math.ceil(salePrice / 5) * 5:item['Цена'] } ₽</p>
+              <p className={styles.price}>Цена: {price(salePrice,getSale10,item)} ₽</p>
               
             </div>
           )})}

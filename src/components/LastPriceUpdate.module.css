@@ -1,0 +1,7 @@
+.updateInfo {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  font-size: 10px;
+  color: rgb(131, 240, 131);
+}
