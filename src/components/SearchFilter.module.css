@@ -21,12 +21,14 @@
 
 .input:focus {
   outline: none;
+  border: 1px solid rgb(131, 240, 131);
+  transition: border 0.5s ease;
 }
 
 .results {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
 }
 
 .filterItem {
@@ -39,6 +41,11 @@
   flex-direction: column;
   gap: 6px;
   animation: fadeInUp 0.4s ease;
+  transition: border 0.5s ease;
+}
+.filterItem:hover {
+  transition: border 0.5s ease;
+  border: 1px solid rgb(131, 240, 131);
 }
 
 .name {
@@ -50,6 +57,7 @@
 .stock,
 .price {
   font-size: 0.95rem;
+  cursor: context-menu;
 }
 
 .noResults {
@@ -61,7 +69,32 @@
 .sale10 {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  align-items: center;
+  gap: 5px;
+}
+.selectSale {
+  font-size: 15px;
+  width: 80px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #444;
+}
+.selectSale:focus {
+  outline: none;
+}
+.highlight {
+  background-color: rgb(131, 240, 131);
+}
+
+.fullAnalogsButton {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: rgb(131, 240, 131);
+  position: relative;
 }
 
 @media (max-width: 600px) {
@@ -80,12 +113,39 @@
   .price {
     font-size: 0.9rem;
   }
+  .fullAnalogsButton {
+    text-align: left;
+  }
 
   .input {
     font-size: 1.5rem;
     height: 60px;
     background-color: #444;
   }
+  .sale10 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+    row-gap: 10px;
+  }
+}
+.aboutFilter {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(56, 56, 56, 0.555);
+  z-index: 50;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.aboutFilterMain {
+  width: 50%;
+  height: 50vh;
+  background-color: #242424;
 }
 
 @keyframes fadeIn {

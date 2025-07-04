@@ -17,7 +17,12 @@ export const useCreateLoadJson = () => {
       const firstSheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[firstSheetName];
 
-      const dataArray = XLSX.utils.sheet_to_json(worksheet, { range: 6 });
+      const rawDataArray = XLSX.utils.sheet_to_json(worksheet, { range: 6 });
+
+      const dataArray = rawDataArray.map((item) => ({
+        ...item,
+        Аналог: item["Аналог"] ? String(item["Аналог"]) : "",
+      }));
 
       setJsonData(dataArray);
 
