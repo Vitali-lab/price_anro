@@ -1,163 +1,92 @@
 .container {
-  width: 100%;
-  max-width: 100%;
-  padding: 12px;
-  box-sizing: border-box;
+  padding: 1rem;
+  background-color: #1a1a1acb;
+  color: #f1f1f1;
+  font-family: "Segoe UI", sans-serif;
+  border-radius: 15px;
+}
+
+.searchHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .input {
-  width: 100%;
-  height: 80px;
-  padding: 10px 12px;
-  font-size: 2rem;
-  border-radius: 8px;
-  border: none;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-  transition: all 0.5s;
-  color: white;
-  background-color: #3f3f3f;
+  flex: 1;
+  height: 50px;
+  min-width: 260px;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #2a2a2a;
+  color: #f1f1f1;
+  font-size: 25px;
 }
-
 .input:focus {
   outline: none;
-  border: 1px solid rgb(131, 240, 131);
-  transition: border 0.5s ease;
+}
+
+.saleControls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.saleSelect {
+  padding: 0.4rem;
+  border-radius: 6px;
+  background: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #444;
+}
+
+.saleLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.loading,
+.noResults {
+  text-align: center;
+  color: #ccc;
+  padding: 1rem;
 }
 
 .results {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
-.filterItem {
-  border: 1px solid #444;
-  border-radius: 12px;
-  padding: 16px;
-  background-color: #1a1a1a;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  animation: fadeInUp 0.4s ease;
-  transition: border 0.5s ease;
-}
-.filterItem:hover {
-  transition: border 0.5s ease;
-  border: 1px solid rgb(131, 240, 131);
+.productCard {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #242424;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 0.4s ease-in-out;
+  transition: transform 0.2s ease;
 }
 
-.name {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.analogs,
-.stock,
-.price {
-  font-size: 0.95rem;
-  cursor: context-menu;
-}
-
-.noResults {
-  color: #999;
-  margin-top: 20px;
-  text-align: center;
-  animation: fadeIn 0.3s ease;
-}
-.sale10 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-}
-.selectSale {
-  font-size: 15px;
-  width: 80px;
-  height: 25px;
+.openReserve {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 8px;
   border: none;
-  border-radius: 5px;
-  color: white;
-  background-color: #444;
-}
-.selectSale:focus {
-  outline: none;
-}
-.highlight {
-  background-color: rgb(131, 240, 131);
-}
-
-.fullAnalogsButton {
-  background-color: transparent;
-  border: none;
-  font-size: 15px;
   cursor: pointer;
-  color: rgb(131, 240, 131);
-  position: relative;
-}
-
-@media (max-width: 600px) {
-  .filterItem {
-    padding: 12px;
-  }
-
-  .name,
-  .name a {
-    font-size: 1rem;
-    color: white;
-  }
-
-  .analogs,
-  .stock,
-  .price {
-    font-size: 0.9rem;
-  }
-  .fullAnalogsButton {
-    text-align: left;
-  }
-
-  .input {
-    font-size: 1.5rem;
-    height: 60px;
-    background-color: #444;
-  }
-  .sale10 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 15px;
-    row-gap: 10px;
-  }
-}
-.aboutFilter {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(56, 56, 56, 0.555);
-  z-index: 50;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-.aboutFilterMain {
-  width: 50%;
-  height: 50vh;
-  background-color: #242424;
+  transition: background-color 0.3s ease;
+  color: white;
+  background-color: #555555;
+  margin-bottom: 20px;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -168,13 +97,132 @@
   }
 }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+.productHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.productName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(131, 240, 131);
+}
+
+.productMeta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.price {
+  font-weight: bold;
+  color: #fdfdfd;
+}
+
+.stock {
+  color: #90ee90;
+}
+
+.stockEmpty {
+  color: #f55;
+  font-weight: bold;
+}
+
+.analogSection {
+  margin-top: 0.5rem;
+}
+
+.analogTitle {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.analogContent {
+  color: #ccc;
+  white-space: pre-wrap;
+}
+
+.analogToggle {
+  background: none;
+  color: #7ee57e;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.reserveSection {
+  margin-top: 1rem;
+  background: #1e1e1e;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.reserveControls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.reserveInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.reserveInputGroup input,
+.reserveInputGroup select {
+  padding: 0.4rem;
+  background: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+}
+
+.reserveButton {
+  padding: 0.5rem 1rem;
+  background: rgb(131, 240, 131);
+  color: #1a1a1a;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reserveButton:hover {
+  background: #a0ff90;
+}
+
+/* 📱 Адаптивность */
+@media (max-width: 600px) {
+  .searchHeader {
+    flex-direction: column;
+    align-items: stretch;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .productHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .reserveControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input {
+    width: 90%;
+    font-size: 20px;
+    padding: 15px;
+  }
+  .reserveSection input {
+    width: 95%;
   }
 }

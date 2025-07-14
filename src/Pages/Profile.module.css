@@ -1,0 +1,88 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  color: #fff;
+}
+
+h2 {
+  text-align: center;
+  color: rgb(131, 240, 131);
+  margin-bottom: 1rem;
+}
+
+.card {
+  background-color: #242424;
+  padding: 2rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  align-self: center;
+  margin-bottom: 1rem;
+  border: 2px solid rgb(131, 240, 131);
+}
+
+input {
+  padding: 0.6rem;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: #fff;
+  width: 100%;
+}
+
+input:disabled {
+  background-color: #2b2b2b;
+  color: #888;
+}
+
+.saveBtn {
+  padding: 0.8rem;
+  background-color: rgb(131, 240, 131);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: 0.3s;
+}
+
+.saveBtn:hover {
+  background-color: #9aff9a;
+}
+
+.success {
+  color: #4caf50;
+  text-align: center;
+}
+
+.error {
+  color: #f44336;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+  }
+
+  input,
+  .saveBtn {
+    font-size: 0.9rem;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+}

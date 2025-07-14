@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 
 export const updateLastUpdatedDate = async () => {
   const now = new Date().toISOString();

@@ -1,0 +1,111 @@
+.loginContainer {
+  min-height: 100vh;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.logo p {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: rgb(131, 240, 131);
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  background: #242424;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.loginForm h2 {
+  color: rgb(131, 240, 131);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.loginForm input {
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+.buttonGuest {
+  margin-top: 10px;
+}
+
+.loginForm input:focus {
+  border-color: rgb(131, 240, 131);
+  outline: none;
+}
+
+.loginForm button {
+  background-color: rgb(131, 240, 131);
+  color: #242424;
+  font-weight: bold;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1rem;
+}
+
+.loginForm button:hover {
+  background-color: #a6fba6;
+}
+
+.error {
+  color: #ff7070;
+  background: #3a1f1f;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+  .loginForm {
+    padding: 1.5rem;
+  }
+
+  .loginForm h2 {
+    font-size: 1.5rem;
+  }
+}
