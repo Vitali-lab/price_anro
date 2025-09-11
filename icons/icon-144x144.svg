@@ -1,0 +1,11 @@
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <rect width="144" height="144" fill="#1a1a1a" rx="18"/>
+  <rect x="36" y="54" width="72" height="36" fill="#83f083" rx="6"/>
+  <rect x="45" y="36" width="54" height="18" fill="#83f083" rx="3"/>
+  <rect x="54" y="27" width="36" height="14" fill="#83f083" rx="2"/>
+  <circle cx="63" cy="41" r="2" fill="#1a1a1a"/>
+  <circle cx="81" cy="41" r="2" fill="#1a1a1a"/>
+  <circle cx="72" cy="68" r="3" fill="#1a1a1a"/>
+  <text x="72" y="110" text-anchor="middle" fill="#83f083" font-family="Arial" font-size="9" font-weight="bold">АнроТех</text>
+</svg>
+
