@@ -164,18 +164,17 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
       if (exists) {
         return prev.filter(f => f.id !== filter.id);
       } else {
-        return [...prev, { ...filter, quantity: 1 }];
+        // Не устанавливаем количество по умолчанию - пользователь сам введет
+        return [...prev, { ...filter, quantity: '' }];
       }
     });
   };
 
   const handleQuantityChange = (filterId, quantity) => {
-    if (quantity < 1) return;
-    
     setSelectedFilters(prev => 
       prev.map(filter => 
         filter.id === filterId 
-          ? { ...filter, quantity: Math.min(quantity, filter.stock) }
+          ? { ...filter, quantity: quantity }
           : filter
       )
     );
@@ -189,6 +188,16 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
 
     if (selectedFilters.length === 0) {
       showError('Добавьте хотя бы один фильтр');
+      return;
+    }
+
+    // Проверяем, что все фильтры имеют указанное количество
+    const filtersWithoutQuantity = selectedFilters.filter(filter => 
+      !filter.quantity || filter.quantity === '' || parseInt(filter.quantity) < 1
+    );
+    
+    if (filtersWithoutQuantity.length > 0) {
+      showError('Укажите количество для всех выбранных фильтров');
       return;
     }
 
@@ -211,7 +220,7 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
         name: filter.name,
         article: filter.article,
         price: filter.price,
-        quantity: filter.quantity,
+        quantity: parseInt(filter.quantity),
         stock: filter.stock,
         // Сохраняем оригинальные данные для совместимости
         productName: filter.name,
@@ -300,8 +309,18 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
         >
           <div className={styles.modalHeader}>
             <h2>
-              {step === 1 ? 'Создание резерва' : 'Добавление фильтров'}
+              {step === 1 ? 'Создание резерва - Шаг 1 из 2' : 'Добавление фильтров - Шаг 2 из 2'}
             </h2>
+            {step === 1 && (
+              <p className={styles.stepDescription}>
+                Выберите контрагента для создания резерва
+              </p>
+            )}
+            {step === 2 && (
+              <p className={styles.stepDescription}>
+                Выберите фильтры и укажите количество для резерва
+              </p>
+            )}
             <button 
               className={styles.closeButton}
               onClick={handleClose}
@@ -429,6 +448,7 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
                   <div className={styles.searchIcon}>🔍</div>
                 </div>
 
+
                 <div className={styles.filtersList}>
                   {filtersLoading ? (
                     <div className={styles.loadingFilters}>
@@ -464,6 +484,7 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
                       </div>
                       {selectedFilters.find(f => f.id === filter.id) && (
                         <div className={styles.quantityControl}>
+                          <div className={styles.quantityLabel}>Количество:</div>
                           <input
                             type="number"
                             min="1"
@@ -471,16 +492,15 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
                             value={selectedFilters.find(f => f.id === filter.id).quantity}
                             onChange={(e) => {
                               e.stopPropagation();
-                              const value = parseInt(e.target.value) || 1;
-                              const maxAvailable = Math.max(0, filter.stock - (filterReserves[filter.id] || 0));
-                              handleQuantityChange(filter.id, Math.min(Math.max(value, 1), maxAvailable));
+                              handleQuantityChange(filter.id, e.target.value);
                             }}
                             onClick={(e) => e.stopPropagation()}
+                            placeholder="Введите количество"
                             className={styles.quantityInput}
                           />
-                          <span className={styles.maxStock}>
-                            макс: {Math.max(0, filter.stock - (filterReserves[filter.id] || 0))}
-                          </span>
+                          <div className={styles.maxStock}>
+                            Макс: {Math.max(0, filter.stock - (filterReserves[filter.id] || 0))} шт.
+                          </div>
                         </div>
                       )}
                     </div>
@@ -490,22 +510,26 @@ export const CreateReserveModal = ({ isOpen, onClose, onSuccess }) => {
 
                 {selectedFilters.length > 0 && (
                   <div className={styles.selectedFilters}>
-                    <h3>Выбранные фильтры:</h3>
-                    {selectedFilters.map((filter) => (
-                      <div key={filter.id} className={styles.selectedFilterItem}>
-                        <div className={styles.filterDetails}>
-                          <span className={styles.filterName}>{filter.name}</span>
-                          <span className={styles.filterQuantity}>x{filter.quantity}</span>
+                    <h3>Выбранные фильтры ({selectedFilters.length}):</h3>
+                    <div className={styles.selectedFiltersList}>
+                      {selectedFilters.map((filter) => (
+                        <div key={filter.id} className={styles.selectedFilterItem}>
+                          <div className={styles.filterDetails}>
+                            <span className={styles.filterName}>{filter.name}</span>
+                            <span className={styles.filterQuantity}>
+                              Количество: {filter.quantity || 'Не указано'} шт.
+                            </span>
+                          </div>
+                          <button 
+                            className={styles.removeFilterBtn}
+                            onClick={() => handleFilterToggle(filter)}
+                            title="Удалить фильтр"
+                          >
+                            ×
+                          </button>
                         </div>
-                        <button 
-                          className={styles.removeFilterBtn}
-                          onClick={() => handleFilterToggle(filter)}
-                          title="Удалить фильтр"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 )}
 
