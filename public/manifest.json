@@ -2,28 +2,28 @@
   "name": "АнроТехГрупп - Система поиска фильтров",
   "short_name": "АнроТехГрупп",
   "description": "Система поиска и бронирования фильтров для АнроТехГрупп",
-  "start_url": "/price_anro/",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#83f083",
   "orientation": "portrait-primary",
-  "scope": "/price_anro/",
+  "scope": "/",
   "lang": "ru",
   "icons": [
     {
-      "src": "/price_anro/icons/icon-144x144.svg",
+      "src": "/icons/icon-144x144.svg",
       "sizes": "144x144",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/price_anro/icons/icon-192x192.svg",
+      "src": "/icons/icon-192x192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "/price_anro/icons/icon-512x512.svg",
+      "src": "/icons/icon-512x512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
@@ -32,13 +32,13 @@
   "categories": ["business", "productivity", "utilities"],
   "screenshots": [
     {
-      "src": "/price_anro/screenshots/desktop.png",
+      "src": "/screenshots/desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
-      "src": "/price_anro/screenshots/mobile.png",
+      "src": "/screenshots/mobile.png",
       "sizes": "390x844",
       "type": "image/png",
       "form_factor": "narrow"
