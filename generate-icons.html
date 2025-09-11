@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Генератор иконок PWA</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #1a1a1a;
+            color: white;
+        }
+        canvas { 
+            border: 1px solid #333; 
+            margin: 10px; 
+            border-radius: 8px;
+        }
+        .icon-set { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+        }
+        .icon-item {
+            text-align: center;
+        }
+        button {
+            background: #83f083;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        button:hover {
+            background: #a6fba6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Генератор иконок для PWA</h1>
+    <p>Нажмите на иконку, чтобы скачать её:</p>
+    
+    <div class="icon-set" id="iconSet"></div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        
+        function createIcon(size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Фон
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1a1a1a');
+            gradient.addColorStop(1, '#0f0f0f');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Фильтр
+            const scale = size / 512;
+            const centerX = size / 2;
+            const centerY = size / 2;
+            
+            // Основа фильтра
+            ctx.fillStyle = '#83f083';
+            ctx.fillRect(centerX - 128 * scale, centerY - 48 * scale, 256 * scale, 96 * scale);
+            
+            // Верхняя часть
+            ctx.fillRect(centerX - 96 * scale, centerY - 112 * scale, 192 * scale, 64 * scale);
+            
+            // Центральная часть
+            ctx.fillRect(centerX - 64 * scale, centerY - 144 * scale, 128 * scale, 48 * scale);
+            
+            // Детали
+            ctx.fillStyle = '#1a1a1a';
+            ctx.beginPath();
+            ctx.arc(centerX - 32 * scale, centerY - 120 * scale, 8 * scale, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(centerX + 32 * scale, centerY - 120 * scale, 8 * scale, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - 16 * scale, 12 * scale, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Текст
+            ctx.fillStyle = '#83f083';
+            ctx.font = `${24 * scale}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.fillText('АнроТех', centerX, centerY + 72 * scale);
+            
+            return canvas;
+        }
+        
+        function downloadIcon(canvas, size) {
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Создаем иконки
+        sizes.forEach(size => {
+            const canvas = createIcon(size);
+            canvas.style.width = '100px';
+            canvas.style.height = '100px';
+            canvas.title = `Скачать ${size}x${size}`;
+            canvas.style.cursor = 'pointer';
+            canvas.onclick = () => downloadIcon(canvas, size);
+            
+            const label = document.createElement('div');
+            label.textContent = `${size}x${size}`;
+            label.style.textAlign = 'center';
+            label.style.fontSize = '12px';
+            label.style.marginTop = '5px';
+            label.style.color = '#ccc';
+            
+            const container = document.createElement('div');
+            container.className = 'icon-item';
+            container.appendChild(canvas);
+            container.appendChild(label);
+            
+            document.getElementById('iconSet').appendChild(container);
+        });
+    </script>
+</body>
+</html>

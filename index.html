@@ -1,14 +1,75 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://img.icons8.com/ios/100/engineering.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>АнроТехГрупп</title>
-    <script type="module" crossorigin src="/price_anro/assets/index-BOeMBSt1.js"></script>
-    <link rel="stylesheet" crossorigin href="/price_anro/assets/index-NJ4jfvyR.css">
+    <link rel="icon" type="image/svg+xml" href="/price_anro/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/price_anro/icons/icon-192x192.svg" />
+    <link rel="manifest" href="/price_anro/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- Content Security Policy - Disabled for external images -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https:; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; font-src 'self' data: https:; connect-src 'self' https: http:; manifest-src 'self';" /> -->
+    
+    <!-- SEO Meta Tags -->
+    <title>АнроТехГрупп - Система поиска и бронирования фильтров</title>
+    <meta name="description" content="Система поиска, учета и бронирования фильтров компании АнроТехГрупп. Поиск по артикулу, названию и аналогам с учетом остатков и цен." />
+    <meta name="keywords" content="фильтры, поиск фильтров, бронирование, АнроТехГрупп, артикул, аналоги" />
+    <meta name="author" content="АнроТехГрупп" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="АнроТехГрупп - Система поиска и бронирования фильтров" />
+    <meta property="og:description" content="Система поиска, учета и бронирования фильтров компании АнроТехГрупп." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="АнроТехГрупп - Система поиска и бронирования фильтров" />
+    <meta name="twitter:description" content="Система поиска, учета и бронирования фильтров компании АнроТехГрупп." />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#83f083" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="АнроТехГрупп" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="АнроТехГрупп" />
+    <meta name="msapplication-TileColor" content="#83f083" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="module" crossorigin src="/price_anro/assets/index-D3rtl_IZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/price_anro/assets/vendor-C7tYskqo.js">
+    <link rel="modulepreload" crossorigin href="/price_anro/assets/router-CG-w72Qi.js">
+    <link rel="modulepreload" crossorigin href="/price_anro/assets/ui-VPjopAaP.js">
+    <link rel="modulepreload" crossorigin href="/price_anro/assets/firebase-DDnKwQsl.js">
+    <link rel="stylesheet" crossorigin href="/price_anro/assets/index-D7WZsI2_.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+    
+    <!-- Start Single Page Apps for GitHub Pages -->
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages
+      // MIT License
+      // https://github.com/rafgraph/spa-github-pages
+      // This script checks to see if a redirect is present in the query string,
+      // converts it back into the correct url and adds it to the
+      // browser's history using window.history.replaceState(...),
+      // which won't cause the browser to attempt to load the new url.
+      // When the single page app is loaded further down in this file,
+      // the correct url will be waiting in the browser's history for
+      // the single page app to route accordingly.
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <!-- End Single Page Apps for GitHub Pages -->
   </body>
 </html>
