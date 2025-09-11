@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/",
+  base: "/price_anro/",
   plugins: [react()],
   build: {
     rollupOptions: {
@@ -12,7 +12,7 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
           firebase: ['firebase/app', 'firebase/firestore'],
-          ui: ['framer-motion', 'react-icons'],
+          ui: ['framer-motion'],
           utils: ['docxtemplater', 'file-saver', 'pizzip', 'xlsx']
         }
       }
