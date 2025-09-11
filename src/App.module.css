@@ -1,6 +1,6 @@
 .bodyWhite {
-  background-color: white;
-  color: black;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .header {
@@ -9,15 +9,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 2px solid rgb(126, 126, 126);
-  background-color: rgb(65, 65, 65);
+  border-bottom: 2px solid var(--border-primary);
+  background-color: var(--bg-tertiary);
   position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   padding: 0;
   font-size: 20px;
-  transition: all 0.5s ease;
+  transition: all var(--transition-slow);
 }
 .headerWhite {
   width: 100%;
@@ -25,16 +25,16 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: 2px solid rgb(18, 19, 18);
-  background-color: rgb(224, 224, 224);
-  color: black;
+  border-bottom: 2px solid var(--border-primary);
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
   position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   padding: 0;
   font-size: 20px;
-  transition: all 0.5s ease;
+  transition: all var(--transition-slow);
 }
 .headerMenu {
   list-style: none;

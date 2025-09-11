@@ -1,12 +1,135 @@
-# React + Vite
+# АнроТехГрупп - Система поиска и бронирования фильтров
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Система поиска, учета и бронирования фильтров компании "АнроТехГрупп". Позволяет пользователям искать фильтры по артикулу, названию и аналогам с учетом остатков и цен, а также создавать резервы.
 
-Currently, two official plugins are available:
+## 🚀 Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Поиск фильтров** - Поиск по артикулу, названию и аналогам
+- **Система резервирования** - Создание и управление резервами товаров
+- **Управление пользователями** - Авторизация и роли пользователей
+- **Административная панель** - Загрузка и обновление данных
+- **Гостевой режим** - Поиск без авторизации
+- **Адаптивный дизайн** - Работа на всех устройствах
 
-## Expanding the ESLint configuration
+## 🛠 Технологии
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React 19, Vite
+- **Стилизация**: CSS Modules
+- **Роутинг**: React Router DOM
+- **Анимации**: Framer Motion
+- **База данных**: Firebase Firestore
+- **Иконки**: React Icons
+- **Документы**: Docxtemplater, XLSX
+
+## 📦 Установка и запуск
+
+### Предварительные требования
+- Node.js 18+ 
+- npm или yarn
+
+### Установка зависимостей
+```bash
+npm install
+```
+
+### Настройка переменных окружения
+Создайте файл `.env` в корне проекта:
+```env
+VITE_FIREBASE_API_KEY=your_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+```
+
+### Запуск в режиме разработки
+```bash
+npm run dev
+```
+
+### Сборка для продакшена
+```bash
+npm run build
+```
+
+### Предварительный просмотр сборки
+```bash
+npm run preview
+```
+
+## 🏗 Структура проекта
+
+```
+src/
+├── components/          # Переиспользуемые компоненты
+│   ├── ErrorBoundary.jsx
+│   ├── Loading.jsx
+│   ├── Toast.jsx
+│   └── ...
+├── Pages/              # Страницы приложения
+│   ├── Login.jsx
+│   ├── MainPage.jsx
+│   ├── Filters.jsx
+│   └── ...
+├── context/            # React Context
+│   └── AuthContext.jsx
+├── hooks/              # Кастомные хуки
+│   ├── useToast.js
+│   └── ...
+├── fireBase/           # Firebase функции
+│   ├── firebaseLoad.js
+│   ├── firebaseUpload.js
+│   └── ...
+├── constants/          # Константы приложения
+│   └── index.js
+├── utils/              # Утилиты
+│   └── validation.js
+└── App.jsx             # Главный компонент
+```
+
+## 🔧 Основные функции
+
+### Авторизация
+- Вход в систему с валидацией
+- Гостевой режим для просмотра
+- Управление ролями (администратор/пользователь)
+
+### Поиск фильтров
+- Поиск по артикулу и названию
+- Поиск по аналогам
+- Подсветка найденных совпадений
+- Применение скидок
+
+### Система резервирования
+- Создание резервов с указанием срока
+- Управление резервами (продление, отмена)
+- Отображение доступных остатков
+
+### Административные функции
+- Загрузка Excel файлов с данными
+- Обновление остатков и цен
+- Управление пользователями
+
+## 🚀 Деплой
+
+### GitHub Pages
+```bash
+npm run deploy
+```
+Filter
+
+### Firebase Hosting
+```bash
+npm run build
+firebase deploy
+```
+
+## 📝 Лицензия
+
+Проект разработан для компании "АнроТехГрупп".
+
+## 🤝 Поддержка
+
+Для получения поддержки обращайтесь к администратору системы.

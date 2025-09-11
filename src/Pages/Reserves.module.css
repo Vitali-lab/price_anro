@@ -1,168 +1,462 @@
 /* Основной контейнер */
 .container {
-  padding: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  color: #f1f1f1;
-  font-family: "Segoe UI", sans-serif;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   margin-top: 80px;
-  animation: fadeIn 0.5s ease;
+}
+
+/* Header */
+.header {
+  background: var(--bg-secondary);
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: rgb(131, 240, 131);
-  border-bottom: 2px solid #444;
-  padding-bottom: 0.5rem;
-  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  text-shadow: 0 2px 4px var(--shadow-primary);
 }
 
-.subTitle {
-  font-size: 1.4rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: #9ef79e;
-  border-left: 4px solid rgb(131, 240, 131);
-  padding-left: 1rem;
-}
-
-.loading {
-  width: 200px;
-  height: 200px;
-  text-align: center;
+.subtitle {
+  color: var(--text-muted);
   font-size: 1.1rem;
-  color: #aaa;
-  margin: 2rem 0;
-  position: absolute;
-  top: calc(50% - 100px);
-  left: calc(50% - 100px);
+  margin: 0;
 }
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: 50px;
-  height: 50px;
-  aspect-ratio: 1;
-  display: grid;
-  border: 4px solid #0000;
-  border-radius: 50%;
-  border-right-color: #19e456;
-  position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
-  animation: l15 1s infinite linear;
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-primary);
 }
-.loader::before,
-.loader::after {
-  content: "";
-  grid-area: 1/1;
-  margin: 2px;
-  border: inherit;
-  border-radius: 50%;
-  animation: l15 2s infinite;
-}
-.loader::after {
-  margin: 8px;
-  animation-duration: 3s;
-}
-@keyframes l15 {
-  100% {
-    transform: rotate(1turn);
-  }
+
+.searchContainer {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
 }
 
 .searchInput {
   width: 100%;
-  height: 35px;
-  padding: 0.7rem 1rem;
-  margin-bottom: 2rem;
+  padding: 0.75rem 1rem 0.75rem 3rem;
   border: 1px solid #444;
   border-radius: 8px;
-  background-color: #1f1f1f;
-  color: #f0f0f0;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
   font-size: 1rem;
-  outline: none;
   transition: all 0.3s ease;
 }
 
 .searchInput:focus {
   border-color: rgb(131, 240, 131);
-  box-shadow: 0 0 8px rgba(131, 240, 131, 0.5);
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(131, 240, 131, 0.2);
 }
 
-/* Карточка резерва */
-.card {
-  background-color: #242424;
-  border: 1px solid #333;
-  border-radius: 10px;
-  padding: 1.2rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.card:hover {
-  transform: scale(1.01);
-  border-color: rgb(131, 240, 131);
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  pointer-events: none;
 }
 
-.card div {
-  margin-bottom: 0.5rem;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.extend,
-.cancel {
-  padding: 0.4rem 0.8rem;
+.createButton {
+  background: rgb(131, 240, 131);
+  color: #000;
   border: none;
-  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.createButton:hover {
+  background: #a6fba6;
+  transform: translateY(-1px);
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: #222;
+  border-bottom: 1px solid #333;
+  padding: 0 1.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  font-size: 1rem;
   font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab.active {
+  color: rgb(131, 240, 131);
+  border-bottom-color: rgb(131, 240, 131);
+  background: rgba(131, 240, 131, 0.1);
+}
+
+/* Reserves List */
+.reservesList {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.empty p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.createFirstButton {
+  background: rgb(131, 240, 131);
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.createFirstButton:hover {
+  background: #a6fba6;
+  transform: translateY(-1px);
+}
+
+/* Reserve Card */
+.reserveCard {
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reserveCard:hover {
+  border-color: rgb(131, 240, 131);
+  background: #2a2a2a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.reserveHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.reserveInfo h3 {
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.createdBy {
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
-  transition: background 0.2s ease;
 }
 
-.extend {
-  background-color: rgb(131, 240, 131);
-  color: #1a1a1a;
+.reserveStatus {
+  display: flex;
+  align-items: center;
 }
 
-.extend:hover {
-  background-color: #a4ffa4;
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
-.cancel {
-  background-color: #ff5555;
-  color: white;
+.status.active {
+  background: rgba(131, 240, 131, 0.2);
+  color: rgb(131, 240, 131);
+  border: 1px solid rgb(131, 240, 131);
 }
 
-.cancel:hover {
-  background-color: #ff7777;
+.status.cancelled {
+  background: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
+  border: 1px solid #ff5252;
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
+
+/* Filters List */
+.filtersList {
+  margin-bottom: 1rem;
+}
+
+.filtersList h4 {
+  color: #fff;
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.filterItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  gap: 1rem;
+}
+
+.filterName {
+  color: #fff;
+  font-weight: 500;
+  flex: 1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.filterQuantity {
+  color: rgb(131, 240, 131);
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Reserve Meta */
+.reserveMeta {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #1f1f1f;
+  border-radius: 8px;
+  border: 1px solid #333;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.metaLabel {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.metaValue {
+  color: #fff;
+  font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Reserve Actions */
+.reserveActions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.editButton {
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.editButton:hover {
+  background: #357abd;
+  transform: translateY(-1px);
+}
+
+.deleteButton {
+  background: #ff5252;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.deleteButton:hover {
+  background: #e53935;
+  transform: translateY(-1px);
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    margin-top: 70px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchContainer {
+    max-width: none;
+  }
+
+  .reserveMeta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reserveActions {
+    justify-content: center;
   }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .container {
+    margin-top: 60px;
+  }
+
+  .header {
+    padding: 1.5rem 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .controls {
     padding: 1rem;
   }
 
-  .card {
+  .tabs {
+    padding: 0 1rem;
+  }
+
+  .tab {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .reservesList {
+    padding: 1rem;
+  }
+
+  .reserveCard {
+    padding: 1rem;
+  }
+
+  .reserveHeader {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+
+  .filterItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.6rem;
+  }
+
+  .filterName {
+    font-size: 0.9rem;
+  }
+
+  .filterQuantity {
+    align-self: flex-end;
+    font-size: 0.85rem;
+  }
+
+  .reserveActions {
+    flex-direction: column;
+  }
+
+  .reserveActions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin-top: 50px;
+  }
+
+  .header {
     padding: 1rem;
   }
 
@@ -170,44 +464,24 @@
     font-size: 1.5rem;
   }
 
-  .subTitle {
-    font-size: 1.2rem;
+  .controls {
+    padding: 0.75rem;
   }
 
-  .extend,
-  .cancel {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
-  }
-  .searchInput {
-    margin: 0 auto;
-    width: 90%;
-    height: 35px;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    padding: 0.9rem;
+  .tabs {
+    padding: 0 0.75rem;
   }
 
-  .card div {
-    font-size: 0.9rem;
+  .tab {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
   }
 
-  .searchInput {
-    font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
+  .reservesList {
+    padding: 0.75rem;
   }
 
-  .actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .extend,
-  .cancel {
-    width: 100%;
+  .reserveCard {
+    padding: 0.75rem;
   }
 }

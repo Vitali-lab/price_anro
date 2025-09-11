@@ -2,6 +2,26 @@ import { NavLink } from 'react-router-dom'
 import styles from './Header.module.css'
 import { useRef, useState,  } from 'react'
 import { useAuth } from "../context/AuthContext";
+import { ThemeToggle } from './ThemeToggle';
+import { BirthdayNotifications } from './BirthdayNotifications';
+
+// Функция принудительного обновления
+const forceUpdate = () => {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistration().then(registration => {
+      if (registration) {
+        registration.update();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        window.location.reload();
+      }
+    });
+  } else {
+    window.location.reload();
+  }
+};
 
 export const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -33,27 +53,44 @@ export const Header = () => {
         <li><NavLink to="/" onClick={() => setIsMobileMenuOpen(false)}>Главное меню</NavLink></li>
         <li><NavLink to="/filters" onClick={() => setIsMobileMenuOpen(false)}>Фильтры</NavLink></li>
         <li><NavLink to="/reserves" onClick={() => setIsMobileMenuOpen(false)}>Резервы</NavLink></li>
+        <li><NavLink to="/contragents" onClick={() => setIsMobileMenuOpen(false)}>Контрагенты</NavLink></li>
          {/* <li><NavLink to="/docs" onClick={() => setIsMobileMenuOpen(false)}>Документы</NavLink></li> */}
 
       </ul>
 
       <div className={styles.userSection}>
+        <div className={styles.userTheme}>
+          
+        
+        </div>
+        
         <div className={styles.avatarBox} onClick={toggleDropdown}>
           <img src={currentUser.avatar} alt="avatar" className={styles.avatar} />
           <p className={styles.userName}>{currentUser.name} {currentUser.surname}</p>
         </div>
+        <div className={styles.birthdayNotifications}>
+          <BirthdayNotifications />
+        </div>
         {dropdownOpen &&   (
           <div className={styles.dropdown} ref={dropdownRef}>
+            <div className={styles.dropdownHeader}>
+              <ThemeToggle />
+            
+            </div>
             <p>{currentUser.name}</p>
             <p>{currentUser.email}</p>
             <p>{isAdmin ? "Администратор" : "Пользователь"}</p>
             <p><NavLink to="/profile">Личный кабинет</NavLink></p>
+            <button className={styles.updateBtn} onClick={forceUpdate} title="Обновить приложение">
+              🔄 Обновить
+            </button>
             <button className={styles.logout} onClick={logout}>Выйти</button>
             </div>
         )}
         
       </div>
     </header>)}
+    
     </>
   )
 }

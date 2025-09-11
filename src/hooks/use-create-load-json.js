@@ -7,30 +7,49 @@ export const useCreateLoadJson = () => {
   const [jsonData, setJsonData] = useState([]);
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    return new Promise((resolve, reject) => {
+      const file = e.target.files[0];
+      if (!file) {
+        reject(new Error('Файл не выбран'));
+        return;
+      }
 
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
+      const reader = new FileReader();
 
-      const firstSheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[firstSheetName];
+      reader.onload = async (e) => {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
 
-      const rawDataArray = XLSX.utils.sheet_to_json(worksheet, { range: 6 });
+          const firstSheetName = workbook.SheetNames[0];
+          const worksheet = workbook.Sheets[firstSheetName];
 
-      const dataArray = rawDataArray.map((item) => ({
-        ...item,
-        Аналог: item["Аналог"] ? String(item["Аналог"]) : "",
-      }));
+          const rawDataArray = XLSX.utils.sheet_to_json(worksheet, { range: 6 });
 
-      setJsonData(dataArray);
+          const dataArray = rawDataArray.map((item) => ({
+            ...item,
+            Аналог: item["Аналог"] ? String(item["Аналог"]) : "",
+          }));
 
-      uploadStockData(dataArray);
-      updateLastUpdatedDate();
-    };
+          setJsonData(dataArray);
 
-    reader.readAsArrayBuffer(file);
+          // Загружаем данные в Firebase
+          await uploadStockData(dataArray);
+          await updateLastUpdatedDate();
+          
+          resolve(dataArray);
+        } catch (error) {
+          console.error('Ошибка обработки файла:', error);
+          reject(error);
+        }
+      };
+
+      reader.onerror = () => {
+        reject(new Error('Ошибка чтения файла'));
+      };
+
+      reader.readAsArrayBuffer(file);
+    });
   };
 
   return {

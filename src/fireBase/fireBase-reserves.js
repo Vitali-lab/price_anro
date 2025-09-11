@@ -11,8 +11,25 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-// Создать резерв
-export const createReserve = async (
+// Создать резерв (новая версия с поддержкой контрагентов и фильтров)
+export const createReserve = async (reserveData) => {
+  try {
+    const expiresAt = Timestamp.fromDate(reserveData.expiresAt);
+    const createdAt = Timestamp.fromDate(reserveData.createdAt);
+
+    await addDoc(collection(db, "reserves"), {
+      ...reserveData,
+      createdAt,
+      expiresAt,
+    });
+  } catch (error) {
+    console.error("Ошибка при создании резерва:", error);
+    throw error;
+  }
+};
+
+// Создать резерв (старая версия для совместимости)
+export const createReserveLegacy = async (
   user,
   product,
   quantity,
@@ -52,7 +69,7 @@ export const createReserve = async (
 export const getUserReserves = async (userId) => {
   const q = query(
     collection(db, "reserves"),
-    where("userId", "==", userId),
+    where("createdBy", "==", userId),
     where("status", "==", "active")
   );
 
@@ -70,7 +87,7 @@ export const deleteReserve = async (reserveId) => {
   await deleteDoc(doc(db, "reserves", reserveId));
 };
 
-// Получить все активные резервы для товара
+// Получить все активные резервы для товара (старая версия)
 export const getProductReserves = async (productId) => {
   const q = query(
     collection(db, "reserves"),
@@ -80,6 +97,48 @@ export const getProductReserves = async (productId) => {
 
   const snapshot = await getDocs(q);
   return snapshot.docs.map((doc) => doc.data());
+};
+
+// Получить все активные резервы для фильтров (новая версия)
+export const getFilterReserves = async (filterIds, excludeReserveId = null) => {
+  if (!filterIds || filterIds.length === 0) return {};
+  
+  try {
+    const now = Timestamp.now();
+    const reservesSnapshot = await getDocs(collection(db, "reserves"));
+    
+    const filterReserves = {};
+    
+    reservesSnapshot.forEach((doc) => {
+      const data = doc.data();
+      
+      // Исключаем текущий редактируемый резерв
+      if (excludeReserveId && doc.id === excludeReserveId) {
+        return;
+      }
+      
+      // Проверяем, что резерв активен и не просрочен
+      if (data.status === "active" && 
+          data.expiresAt && 
+          data.expiresAt.seconds > now.seconds &&
+          data.filters && Array.isArray(data.filters)) {
+        
+        data.filters.forEach((filter) => {
+          if (filterIds.includes(filter.id)) {
+            if (!filterReserves[filter.id]) {
+              filterReserves[filter.id] = 0;
+            }
+            filterReserves[filter.id] += filter.quantity || 0;
+          }
+        });
+      }
+    });
+    
+    return filterReserves;
+  } catch (error) {
+    console.error("Ошибка при получении резервов фильтров:", error);
+    return {};
+  }
 };
 
 // Получить все резервы (например, для админа)

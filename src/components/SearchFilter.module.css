@@ -1,29 +1,29 @@
 .container {
-  padding: 1rem;
-  background-color: #1a1a1acb;
-  color: #f1f1f1;
+  padding: var(--spacing-md);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: "Segoe UI", sans-serif;
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
 }
 
 .searchHeader {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--spacing-md);
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .input {
   flex: 1;
   height: 50px;
   min-width: 260px;
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #444;
-  background: #2a2a2a;
-  color: #f1f1f1;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--input-border);
+  background: var(--bg-hover);
+  color: var(--text-primary);
   font-size: 25px;
 }
 .input:focus {
@@ -33,15 +33,15 @@
 .saleControls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .saleSelect {
   padding: 0.4rem;
-  border-radius: 6px;
-  background: #2a2a2a;
-  color: #f1f1f1;
-  border: 1px solid #444;
+  border-radius: var(--radius-sm);
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
 }
 
 .saleLabel {
@@ -54,8 +54,8 @@
 .loading,
 .noResults {
   text-align: center;
-  color: #ccc;
-  padding: 1rem;
+  color: var(--text-muted);
+  padding: var(--spacing-md);
 }
 
 .results {
@@ -65,25 +65,25 @@
 }
 
 .productCard {
-  border: 1px solid #333;
-  border-radius: 8px;
-  padding: 1rem;
-  background: #242424;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  background: var(--bg-tertiary);
+  box-shadow: 0 0 10px var(--shadow-primary);
   animation: fadeIn 0.4s ease-in-out;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-fast);
 }
 
 .openReserve {
   padding: 10px 16px;
   font-size: 1rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  color: white;
-  background-color: #555555;
-  margin-bottom: 20px;
+  transition: background-color var(--transition-normal);
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+  margin-bottom: var(--spacing-xl);
 }
 
 @keyframes fadeIn {
@@ -112,22 +112,29 @@
 
 .productMeta {
   display: flex;
-  gap: 1rem;
-  font-size: 0.95rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .price {
   font-weight: bold;
-  color: #fdfdfd;
+  color: var(--text-primary);
 }
 
 .stock {
-  color: #90ee90;
+  color: var(--success);
 }
 
 .stockEmpty {
-  color: #f55;
+  color: var(--error);
   font-weight: bold;
+}
+
+.reserved {
+  color: var(--warning);
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .analogSection {
@@ -140,13 +147,13 @@
 }
 
 .analogContent {
-  color: #ccc;
+  color: var(--text-muted);
   white-space: pre-wrap;
 }
 
 .analogToggle {
   background: none;
-  color: #7ee57e;
+  color: var(--accent-primary);
   border: none;
   cursor: pointer;
   font-size: 0.9rem;
@@ -178,19 +185,19 @@
 .reserveInputGroup input,
 .reserveInputGroup select {
   padding: 0.4rem;
-  background: #2c2c2c;
-  color: #fff;
-  border: 1px solid #444;
-  border-radius: 6px;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
 }
 
 .reserveButton {
   padding: 0.5rem 1rem;
-  background: rgb(131, 240, 131);
-  color: #1a1a1a;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition: background 0.2s ease;
 }

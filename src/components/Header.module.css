@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #242424;
-  color: #fff;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: var(--spacing-md) var(--spacing-xl);
+  box-shadow: 0 4px 10px var(--shadow-primary);
   position: fixed;
   top: 0;
   left: 0;
@@ -18,28 +18,34 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .logo span {
-  color: rgb(131, 240, 131);
+  color: var(--accent-primary);
+}
+.userTheme {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-right: 50px;
 }
 
 .navList {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .navList li a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   position: relative;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color var(--transition-normal);
 }
 
 .navList li a::after {
@@ -49,8 +55,8 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background: rgb(131, 240, 131);
-  transition: width 0.3s ease;
+  background: var(--accent-primary);
+  transition: width var(--transition-normal);
 }
 
 .navList li a:hover::after {
@@ -60,6 +66,9 @@
 .userSection {
   position: relative;
   right: 90px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .avatarBox {
@@ -91,29 +100,56 @@
   position: absolute;
   right: 0;
   top: 60px;
-  background: #1a1a1a;
-  padding: 1rem;
-  border-radius: 8px;
+  background: var(--bg-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
   min-width: 200px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-  animation: slideDown 0.3s ease;
+  box-shadow: 0 6px 20px var(--shadow-primary);
+  animation: slideDown var(--transition-normal) ease;
   z-index: 100;
 }
 
-.logout {
-  margin-top: 0.5rem;
+.updateBtn {
+  margin-top: var(--spacing-sm);
   padding: 0.4rem 0.8rem;
   border: none;
-  background: rgb(131, 240, 131);
-  color: #242424;
-  border-radius: 5px;
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-color);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.2s;
+  transition: background var(--transition-fast);
+  font-size: 0.9rem;
+}
+
+.updateBtn:hover {
+  background: var(--btn-secondary-hover);
+}
+
+.logout {
+  margin-top: var(--spacing-sm);
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background var(--transition-fast);
+}
+.dropdownHeader {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .logout:hover {
-  background: #a6fba6;
+  background: var(--btn-primary-hover);
+}
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 /* Анимации */
@@ -153,27 +189,36 @@
 
 .burger span {
   height: 3px;
-  background: rgb(131, 240, 131);
+  background: var(--accent-primary);
   border-radius: 3px;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   transform-origin: center;
 }
 
 /* Адаптивный блок */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
   .navList {
     position: absolute;
     top: 70px;
     left: 0;
     right: 0;
-    background: #1f1f1f;
+    background: var(--bg-card);
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1rem 0;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
     display: none;
-    animation: slideDown 0.3s ease;
+    animation: slideDown var(--transition-normal) ease;
+  }
+  .userTheme {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 25px;
+  }
+  .birthdayNotifications {
+    margin-left: 25px;
   }
 
   .navList.open {
@@ -189,9 +234,35 @@
     display: none;
   }
 
+  .header {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    height: 55px;
+  }
+
   .userSection {
     margin-left: auto;
     position: relative;
-    right: 60px;
+    right: 70px;
+    gap: var(--spacing-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .userSection {
+    right: 50px;
+    gap: var(--spacing-xs);
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo p {
+    font-size: 1.2rem;
   }
 }

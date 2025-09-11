@@ -22,7 +22,15 @@ export const AuthProvider = ({ children }) => {
       return [];
     }
   }
-console.log(users);
+
+  useEffect(() => {
+    // Загружаем пользователей при инициализации
+    loadUsers();
+  }, []);
+
+  useEffect(() => {
+    console.log('Loaded users:', users);
+  }, [users]);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -53,12 +61,23 @@ console.log(users);
 
   const login = async (username, password) => {
     try {
+      // Валидация входных данных
+      if (!username?.trim() || !password?.trim()) {
+        throw new Error("Логин и пароль не могут быть пустыми");
+      }
+
+      console.log('Attempting login for:', username);
+      
       // Если users пуст, загружаем заново
       const usersToCheck = users.length > 0 ? users : await loadUsers();
+      
+      console.log('Available users:', usersToCheck);
       
       const foundUser = usersToCheck.find(
         (el) => el.login === username && String(el.password) === String(password)
       );
+
+      console.log('Found user:', foundUser);
 
       if (foundUser) {
         setCurrentUser(foundUser);
@@ -66,13 +85,16 @@ console.log(users);
         setIsAdmin(!!foundUser.isAdmin);
         navigate('/')
         localStorage.setItem("authData", JSON.stringify(foundUser));
-        return true;
+        return { success: true, message: "Успешный вход в систему" };
       }
 
-      return false;
+      return { success: false, message: "Неверный логин или пароль" };
     } catch (error) {
       console.error("Login error:", error);
-      return false;
+      return { 
+        success: false, 
+        message: error.message || "Произошла ошибка при входе в систему" 
+      };
     }
   };
   
