@@ -10,7 +10,7 @@ import App from './App.jsx'
 initPWA();
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <BrowserRouter basename="/price_anro">
   <AuthProvider>
     <App />
   </AuthProvider>
