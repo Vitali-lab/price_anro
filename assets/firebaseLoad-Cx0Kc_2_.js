@@ -1,0 +1,1 @@
+import{c as a,a as s,d as t,f as e}from"./firebase-CrVzxzD3.js";import{e as r}from"./index-DALuXi8Z.js";const o=async()=>{const t=a(r,"products");return(await s(t)).docs.map(a=>a.data())},d=async()=>{const a=t(r,"meta","lastUpdated"),s=await e(a);return s.exists()?s.data().date:null};export{o as a,d as f};
